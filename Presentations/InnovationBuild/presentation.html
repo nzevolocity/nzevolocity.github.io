@@ -731,14 +731,14 @@ name: S25
 - Lets use the "EvoSens Board" to measure the voltage of a 9V battery
  - In your real design this will be the 24V or the 48V vehicle battery
 - Connect the 9V battery across the terminals labelled "Battery" (make sure the polarity is correct)
-- The voltage sesnor on the "EvoSens Board" steps-down the battery voltage by 1/10
- - This is because `\( R_{sens1} = 9k\Omega \)` and `\( R_{sens2} = 1k\Omega \)`
+- The voltage sesnor on the "EvoSens Board" steps-down the battery voltage by 1/7.8
+ - This is because `\( R_{sens1} = 68k\Omega \)` and `\( R_{sens2} = 10k\Omega \)`
 - In your program, first 'setup' *Serial* communication at 9600 bps so we can display battery voltage on PC
 - Output of the voltage sensor is connected to A0 pin
  - Read the voltage at A0 using *AnalogRead*
 - *AnalogRead* converts a 0V to 5V signal at A0 to a number between 0 and 1023
  - To get the actual voltage we have to multiply the result by 5 and divide by 1023
- - We also have to multiply this number by 10 to get the actual battery voltage by reversing what the step-down introduced by the voltage sensor
+ - We also have to multiply this number by 7.8 to get the actual battery voltage by reversing what the step-down introduced by the voltage sensor
 - Read and display the battery voltage on PC every 1s
 
 ---
@@ -767,6 +767,26 @@ name: S27
 name: S28
 
 # Bluetooth Communication with Phone (P-II)
+
+---
+name: S29
+
+# Measuring Current (P-I)
+
+-	The Arduino can only read analogue voltages and therefore before we can measure the current it needs to be converted to a voltage
+-	For this purpose, we are using an integrated circuit (IC) called “ACS730”, which measures the current flowing from the battery to the motor controller and convert this current to a voltage between 0 V and 5 V
+ - The output of the ACS730 IC connected to pin A0 of the Arduino Nano
+-	The ACS730 IC produces 2.5 V when the current is 0 A
+- The ACS730 IC produces 0.04 V per each 1 A flowing through it
+ - For example, if the current flowing through it is 20 A then the voltage produced by the ACS730 will be 3.3 V (i.e. 2.5 V + 0.04 x 20 V)
+-	Note that the ACS730 IC may not produce exactly 2.5 V when current is 0 A
+ - We can measure this value on pin A2 of the Arduino Nano and use it in our calculations to improve the accuracy of the measurement
+- Lets write a program to measure both the battery current and voltage and display on PC screen
+
+---
+name: S30
+
+# Measuring Current (P-II)
 
 
 ---
