@@ -18,6 +18,11 @@
         font-weight: bold;
         color: #00467F;
       }
+
+      h1{
+        margin-top: 30px !important;
+        margin-bottom: 30px !important;
+      }
       .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
 
       .TitleAuthor {
@@ -51,6 +56,7 @@
         background-size: contain;
         background-image: url(https://cdn.auckland.ac.nz/assets/central/central-services/mediaandmarketing/uoa-logos-2015/uoa-logo-2015-reverse.png);
       }
+
       .logo-slide {
         content: "";
         position: absolute;
@@ -738,13 +744,17 @@ name: S25
  - Read the voltage at A0 using *AnalogRead*
 - *AnalogRead* converts a 0V to 5V signal at A0 to a number between 0 and 1023
  - To get the actual voltage we have to multiply the result by 5 and divide by 1023
- - We also have to multiply this number by 7.8 to get the actual battery voltage by reversing what the step-down introduced by the voltage sensor
+ - We also have to multiply this number by 7.8 to get the actual battery voltage by reversing the step-down introduced by the voltage sensor
 - Read and display the battery voltage on PC every 1s
 
 ---
 name: S26
 
 # Measuring the Battery Voltage (P-II)
+
+.center[
+<img src="img/EvoSensV.png" class="noborder" alt="Voltage Measurement" width="950px"/>
+]
 
 ---
 name: S27
@@ -755,18 +765,22 @@ name: S27
 -	Since we already use the default serial to communicate with PC we have to use a software serial 
 -	Fortunately, we are going to use an existing software called AltSoftSerial to help us
 -	Go to Tools > Manage Libraries, find AltSoftSerial and install it so we can use it in our project
--	We can now setup AltSoftSerial communication at 9600 bps to communicate with the Bluetooth module in our program 
+-	We can now setup AltSoftSerial communication at 9600 bps to communicate with the Bluetooth module  
  -	Connect the Bluetooth module to header pins labeled “P1” 
-- Lets have a counter that counts up every second upto 9 and send this counter value to the phone
+- Lets have a counter that counts up every second upto 10 and send this counter value to the phone
  - The phone will receive the counter value every second
  - Display the counter value also on the PC so we can *debug* our code 
--	On your phone, download a Bluetooth Serial app to view the message sent by the Arduino 
- -	Once you pair the Bluetooth module with the phone via the Bluetooth Serial app, the blinking red light on the module will stay on indicating successful pairing
+-	On your phone, download a *BluetoothLE* app to view the message sent by the Arduino 
+ - Once you pair the Bluetooth module with the phone via the BluetoothLE app, the blinking red light will stay on indicating successful pairing
 
 ---
 name: S28
 
 # Bluetooth Communication with Phone (P-II)
+
+.center[
+<img src="img/EvoSensBLE.png" class="noborder" alt="BLE Coms" width="920px"/>
+]
 
 ---
 name: S29
@@ -774,12 +788,12 @@ name: S29
 # Measuring Current (P-I)
 
 -	The Arduino can only read analogue voltages and therefore before we can measure the current it needs to be converted to a voltage
--	For this purpose, we are using an integrated circuit (IC) called “ACS730”, which measures the current flowing from the battery to the motor controller and convert this current to a voltage between 0 V and 5 V
- - The output of the ACS730 IC connected to pin A0 of the Arduino Nano
--	The ACS730 IC produces 2.5 V when the current is 0 A
-- The ACS730 IC produces 0.04 V per each 1 A flowing through it
- - For example, if the current flowing through it is 20 A then the voltage produced by the ACS730 will be 3.3 V (i.e. 2.5 V + 0.04 x 20 V)
--	Note that the ACS730 IC may not produce exactly 2.5 V when current is 0 A
+-	For this purpose, we are using an integrated circuit (IC) called “ACS730”, which measures the current flowing from the battery to the motor controller and convert this current to a voltage between 0V and 5V
+ - The output of the ACS730 IC is connected to pin A1 of the Arduino Nano
+-	The ACS730 IC produces 2.5V when the current is 0A
+- The ACS730 IC produces 0.04V per each 1A flowing through it
+ - For example, if the current flowing through it is 20A then the voltage produced by the ACS730 will be 3.3V (i.e. 2.5V + 0.04 x 20V)
+-	Note that the ACS730 IC may not produce exactly 2.5V when current is 0A
  - We can measure this value on pin A2 of the Arduino Nano and use it in our calculations to improve the accuracy of the measurement
 - Lets write a program to measure both the battery current and voltage and display on PC screen
 
@@ -788,6 +802,9 @@ name: S30
 
 # Measuring Current (P-II)
 
+.center[
+<img src="img/EvoSensI.png" class="noborder" alt="V&I Measurement" width="950px"/>
+]
 
 ---
 
