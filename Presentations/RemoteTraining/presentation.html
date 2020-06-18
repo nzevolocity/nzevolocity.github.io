@@ -432,7 +432,7 @@ name: S10
  - The voltage sensor steps-down the battery voltage to a value that can be measured by the Arduino computer
 - A voltage sensor can be made using two resistors that form a voltage divider
  - Voltage at the mid point of the divider (sensor) is 
-\\[\text {Measurement} = \text {Battery Voltage} \times \frac {R\_{sens2}} {R\_{sens1} + R\_{sens2}} \\]
+\\[\text {Measurement} = \text {Battery Voltage} \times \frac {R\_{VSENS2}} {R\_{VSENS1} + R\_{VSENS2}} \\]
 - Lets build a voltage sensor to measure the voltage of a 24V battery
  - Use `\( 1k\Omega \)` and `\( 7k\Omega \)` resistors to step-down the voltage to 3V
  - Before building this circuit use a multimeter in Proteus to confirm your circuit works
@@ -718,9 +718,25 @@ Lets make a very simple stopwatch using the Arduino. In this stopwatch every tim
  - Every time the button is pressed (i.e. you read a logic High) reset the time
 
 ---
-exclude: true
 
-name: S20
+class: title-slide
+layout: false
+count: false
+.logo-title[]
+
+# Starting Work on the Dashboard 
+### Measuring Battery Voltage & Current
+
+---
+
+layout: true
+name: template_slide
+
+.logo-slide[]
+.footer[[Duleepa J Thrimawithana](https://www.linkedin.com/in/duleepajt), Department of Electrical, Computer and Software Engineering (2019)]
+
+---
+name: S22
 
 # Variables and Logic Statements 
 
@@ -745,9 +761,7 @@ name: S20
 ]
 
 ---
-exclude: true
-
-name: S19
+name: S23
 
 # Digital and Analog Signals
 
@@ -758,21 +772,165 @@ name: S19
  - Need to setup the pin as an 'input' pin
 - Continuous voltage signals that change over time are called analog signals
  - A microcontroller reads the analogue signals using specific analog pins, which are connected to an Analogue to Digital converter (ADC) of a microcontroller
-- An ADC convert an analog signal to a digital number
+- An ADC convert an analog signal to a digital (integer) number
  - Microcontrollers typically have built in ADCs
  - Higher ADC resolution improves accuracy
 ]
 
 .right-column[
 .center[
-<img src="img/ADC.png" class="noborder" alt="LED Program" width="200px"/>
+<img src="img/ADC.png" class="noborder" alt="ADC" width="200px"/>
 ]
 ]
 
 ---
+name: S24
+
+# How Does an ADC Work?
+
+.left-column[
+- The analogue pins A0 to A7 of the Arduino Nano are connected to Arduino Nano's Analogue to Digital converter (ADC) unit
+ - For example, the analogue voltage at pin A0 can be read by the Arduino using the command analogRead(A0)
+ - The value this command gives you is an integer number since computers love integers  
+ - We need to use mathematics to find out actual voltage
+- ADC converts a voltage between 0V & 5V to an integer between 0 & 1023
+ - For example, 2.5V and A0 will be read by Arduino as 512
+- How to use mathematics so that Arduino knows the actual voltage?
+ - What we get from analogRead(A0) need to divided by 1023 and multiplied by 5
+]
+
+.right-column[
+.center[
+<img src="img/ADCExample.png" class="noborder" alt="ADC Working" width="300px"/>
+]
+]
+
+---
+name: S25
+
+# Building a Voltage Sensor Circuit
+
+.left-column[
+- Battery voltage is too high to be measured by an Arduino 
+ - The voltage sensor steps-down the battery voltage to a value that can be measured by the Arduino computer
+- A voltage sensor can be made using a voltage divider
+ - Voltage at the mid point of the divider (sensor) is 
+\\[\text {Measurement} = \text {Battery Voltage} \times \frac {R\_{VSENS2}} {R\_{VSENS1} + R\_{VSENS2}} \\]
+- Lets build a voltage sensor to measure the voltage of a 24V battery
+ - Use `\( 1k\Omega \)` and `\( 23k\Omega \)` resistors to step-down the voltage to 1V
+ - Use a voltmeter in Proteus to confirm 
+- We need to keep the current through the voltage sensor circuit small (ideally less than 1mA)
+]
+
+.right-column[
+<br>
+.center[
+.zoom175[
+<img src="img/VoltageDivProteus.png" class="noborder" alt="Voltage Divide" width="300px"/>
+]
+]
+]
+
+---
+name: S26
+
+# Building a Current Sensor Circuit
+
+.left-column[
+- Battery current needs to be converted to a voltage to be measured by an Arduino 
+ - A current sensor integrated circuit (IC) can be used for this
+- Current sensor ICs can be bought that suit the range of current you plan to measure
+ - Lets use an IC called the ACS712 
+- The output of ACS712 is a voltage proportional to current through
+\\[\text {Measurement} = \text {Battery Current} \times 0.066 + 2.5V \\]
+- The connection between battery and the motor controller (+ motor) can be split to insert the ACS712 in the path of the current
+ - ACS712 needs a 5V and ground (GND) connection
+ - Use a voltmeter in Proteus to confirm 
+]
+
+.right-column[
+.center[
+.zoom175[
+<img src="img/CurrentSens.png" class="noborder" alt="Voltage Divide" width="320px"/>
+]
+]
+]
+
+---
+name: S27
+
+# Measuring the Battery Voltage (P-I)
+
+- Lets write a software program to measure the voltage of you 24V battery and display it on the PC screen
+ - In your real design this may be using a 24V or the 48V vehicle battery
+- A circuit is setup in Proteus using a voltage divider as a sensor to step-down the battery voltage by 1/24
+ - This is because `\( R_{VSENS1} = 23k\Omega \)` and `\( R_{VSENS2} = 1k\Omega \)`
+- In your program, first 'setup' *Serial* communication at 9600 bps so we can display battery voltage on PC
+- Output of the voltage sensor is connected to A0 pin
+ - Read the voltage at A0 using *AnalogRead*
+- *AnalogRead* converts a 0V to 5V signal at A0 to a number between 0 and 1023
+ - To get the actual voltage we have to multiply the result by 5 and divide by 1023
+ - We also have to multiply this number by 24/1 to get the actual battery voltage by reversing the step-down introduced by the voltage sensor
+- Read and display the battery voltage on PC every 1s
+
+---
+
+name: S28
+
+# Measuring the Battery Voltage (P-II)
+
+.center[
+<img src="img/EvoSensV.png" class="noborder" alt="Voltage Measurement" width="950px"/>
+]
+
+---
+
+
+name: S29
+
+# Measuring Current (P-I)
+
+-	Lets write a software program to measure the current drawn from the 24V battery and display it on the PC screen
+-	For this purpose, we are using an integrated circuit (IC) called “ACS712”, which measures the current flowing from the battery to the motor controller and convert this current to a voltage between 0V and 5V
+ - The output of the ACS712 IC is connected to pin A1 of the Arduino Nano in Proteus
+-	The ACS712 IC produces 2.5V when the current is 0A
+- The ACS712 IC produces 0.066V per each 1A flowing through it
+ - For example, if the current flowing through it is 10A then the voltage produced by the ACS712 will be 3.16V (i.e. 2.5V + 0.066 x 10A)
+-	Note that the ACS712 IC may not produce exactly 2.5V when current is 0A
+ - We can measure this value using the Arduino Nano and use it in our calculations to improve the accuracy of the measurement
+- Lets also add the battery voltage measure in to the same program so both the current and voltage is displayed on PC screen
+
+---
+
+
+name: S30
+
+# Measuring Current (P-II)
+
+.center[
+<img src="img/EvoSensI.png" class="noborder" alt="V&I Measurement" width="950px"/>
+]
+
+---
+name: S21
+
+# Challenge 2
+
+Lets now combine the work so far so we can measure and display the battery voltage and current drawn by the motor controller when the cart is running. Here are some ideas,
+- A model of the motor, motor controller and the battery is given in the Proteus 
+ - You can change the position of the accelerator to change the speed of the cart
+ - Run the simulation and observe change in speed and battery current. Why does the current go negative when you reduce speed?
+- How would you add the voltage and current sensors we designed to measure battery voltage and current
+ - To help in Proteus the region where the sensors should be added is highlighted
+- Copy and paste the voltage and current sensors we worked on and attach to the battery supplying the motor controller 
+ - Remember to update the labels to avoid two `\( V_{Vsens} \)` signals feeding A0 pin 
+ - Similarly update the labels to avoid two `\( V_{Isens} \)` signals feeding A0 pin 
+- Also measure and display the 2.5V signal available at the VIOUT pin of the ACS712
+
+---
 exclude: true
 
-name: S21
+name: S31
 
 # Detecting Push-Button Press with Arduino
 
@@ -844,36 +1002,7 @@ name: template_slide
 .logo-slide[]
 .footer[[Duleepa J Thrimawithana](https://www.linkedin.com/in/duleepajt), Department of Electrical, Computer and Software Engineering (2019)]
 
----
-exclude: true
 
-name: S25
-
-# Measuring the Battery Voltage (P-I)
-
-- Lets use the "EvoSens Board" to measure the voltage of a 9V battery
- - In your real design this will be the 24V or the 48V vehicle battery
-- Connect the 9V battery across the terminals labelled "Battery" (make sure the polarity is correct)
-- The voltage sesnor on the "EvoSens Board" steps-down the battery voltage by 1/7.8
- - This is because `\( R_{sens1} = 68k\Omega \)` and `\( R_{sens2} = 10k\Omega \)`
-- In your program, first 'setup' *Serial* communication at 9600 bps so we can display battery voltage on PC
-- Output of the voltage sensor is connected to A0 pin
- - Read the voltage at A0 using *AnalogRead*
-- *AnalogRead* converts a 0V to 5V signal at A0 to a number between 0 and 1023
- - To get the actual voltage we have to multiply the result by 5 and divide by 1023
- - We also have to multiply this number by 7.8 to get the actual battery voltage by reversing the step-down introduced by the voltage sensor
-- Read and display the battery voltage on PC every 1s
-
----
-exclude: true
-
-name: S26
-
-# Measuring the Battery Voltage (P-II)
-
-.center[
-<img src="img/EvoSensV.png" class="noborder" alt="Voltage Measurement" width="950px"/>
-]
 
 ---
 exclude: true
@@ -905,33 +1034,6 @@ name: S28
 <img src="img/EvoSensBLE.png" class="noborder" alt="BLE Coms" width="920px"/>
 ]
 
----
-exclude: true
-
-name: S29
-
-# Measuring Current (P-I)
-
--	The Arduino can only read analogue voltages and therefore before we can measure the current it needs to be converted to a voltage
--	For this purpose, we are using an integrated circuit (IC) called “ACS730”, which measures the current flowing from the battery to the motor controller and convert this current to a voltage between 0V and 5V
- - The output of the ACS730 IC is connected to pin A1 of the Arduino Nano
--	The ACS730 IC produces 2.5V when the current is 0A
-- The ACS730 IC produces 0.04V per each 1A flowing through it
- - For example, if the current flowing through it is 20A then the voltage produced by the ACS730 will be 3.3V (i.e. 2.5V + 0.04 x 20V)
--	Note that the ACS730 IC may not produce exactly 2.5V when current is 0A
- - We can measure this value on pin A2 of the Arduino Nano and use it in our calculations to improve the accuracy of the measurement
-- Lets write a program to measure both the battery current and voltage and display on PC screen
-
----
-exclude: true
-
-name: S30
-
-# Measuring Current (P-II)
-
-.center[
-<img src="img/EvoSensI.png" class="noborder" alt="V&I Measurement" width="950px"/>
-]
 
 ---
 
