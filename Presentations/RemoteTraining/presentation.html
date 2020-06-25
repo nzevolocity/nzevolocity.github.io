@@ -912,7 +912,7 @@ name: S30
 ]
 
 ---
-name: S21
+name: S30
 
 # Challenge 2
 
@@ -926,6 +926,134 @@ Lets now combine the work so far so we can measure and display the battery volta
  - Remember to update the labels to avoid two `\( V_{Vsens} \)` signals feeding A0 pin 
  - Similarly update the labels to avoid two `\( V_{Isens} \)` signals feeding A0 pin 
 - Also measure and display the 2.5V signal available at the VIOUT pin of the ACS712
+
+---
+
+class: title-slide
+layout: false
+count: false
+.logo-title[]
+
+# Tachometers and Temperature Sensors  
+### Measuring Speed and Temperature
+
+---
+
+layout: true
+name: template_slide
+
+.logo-slide[]
+.footer[[Duleepa J Thrimawithana](https://www.linkedin.com/in/duleepajt), Department of Electrical, Computer and Software Engineering (2019)]
+
+---
+name: S31
+
+# Measuring Vehicle Speed & Acceleration
+
+.left-column[
+- Typically we use a tachometer to measure how fast a wheel spins 
+ - Rotational speed (`\( \omega_{wheel} \)`) and acceleration (`\( \alpha_{wheel} \)`) of the wheel is then converted linear speed (`\( v_{cart} \)`) and acceleration (`\( a_{cart} \)`) since we know the radius (`\( r \)`) of the wheel
+\\[v\_{cart} \approx  \omega\_{wheel} \times r \quad  \text {&} \quad a\_{cart} \approx \alpha\_{wheel} \times r \\]
+- Alternatively a GPS can be used to measure the speed and acceleration 
+ - GPS modules that interface with [Arduino are available](https://create.arduino.cc/projecthub/ruchir1674/how-to-interface-gps-module-neo-6m-with-arduino-8f90ad) or a phone with an appropriate app can be used 
+- Motor controllers can predict the speed using for example the sensors in the motor 
+ - Depends on type of motor and controller you use
+]
+
+.right-column[
+<br>
+<br>
+<img src="img/MagneticSpeed.png" class="noborder" alt="V & I Sensor" width="350px"/>
+]
+
+---
+name: S32
+
+# Tachometers
+
+.left-column[
+- Commonly tachometers either use magnetism of light to measure the rotational speed of a wheel 
+- A tachometers that relies on light to measure the speed of a wheel use a device called a photo interrupter 
+- A photo interrupter consist of 
+ - Light emitting diode (LED) to generate a light source (a light beam)
+ - A light detector like a photo diode or photo transistor 
+- Photo interrupters are very cheap 
+- A more advanced version of a tachometers are also called shaft/rotary encoder
+ - They can also predict the precise location of the wheel 
+]
+
+.right-column[
+.center[
+<img src="img/photoint2.jpg" class="noborder" alt="Sensor" width="130px"/>
+.zoom175[
+<img src="img/PhotoInt.jpg" class="noborder" alt="Photo Sensor" width="320px"/>
+]
+]
+]
+
+---
+name: S33
+
+# How to Use a Photo Interrupter (PI)
+
+.center[
+<img src="img/SpeedSensor.png" class="noborder" alt="Speed Sensor" width="400px"/> &nbsp &nbsp &nbsp &nbsp &nbsp
+<img src="img/PhotoInt.jpg" class="noborder" alt="Speed Sensor" width="400px"/>
+]
+
+- LED needs to be powered (e.g. using a 5V supply and a current limiting resistor)
+- Light detector may also need a power supply to function (typical a 5V supply) together with a measurement resistor 
+- When light from the LED reaches the detector through the slots in the disk attached to wheel the photo interrupter produces a signal 
+
+---
+name: S34
+
+# How to Use a Photo Interrupter (PII)
+
+
+.center[
+<img src="img/SpeedSensor.png" class="noborder" alt="Speed Sensor" width="380px"/> &nbsp &nbsp &nbsp &nbsp &nbsp
+<img src="img/PhotoInt.jpg" class="noborder" alt="Speed Sensor" width="380px"/>
+]
+
+- When slots are out of alignment, no light reaches the detector 
+- Photo interrupter outputs a stream of high and low pulses that can be counted to determine the speed
+- Number of pulses depends on the number of slots (`\( N_{slots} \)`) in the disk
+- The rotational speed is then simply 
+\\[ \omega\_{wheel} = 2\pi / (\text{Time Period of a Pulse} \times N_{slots}) \\]
+
+---
+name: S35
+
+# Measuring Battery Temperature 
+
+.left-column[
+- There are many types of temperature sensors
+- TMP36 is one of the easiest to use
+- It needs a 5V supply and a ground connection
+- The voltage at the center pin will change by 0.01V per every degree starting from 0.5V at 0 degrees C
+ - For example if the temperature is 25 degree C the TMP36 sensor will show 0.75V (i.e. 0.5 + 0.25V)
+- The black plastic case of the TMP36 sensor should be touching the hot surface to be measured 
+- The voltage at the center pin can be read using analogRead(A_) function
+]
+
+.right-column[
+.center[
+<img src="img/TMP36.png" class="noborder" alt="TMP36 Sensor" width="300px"/>
+]
+]
+
+
+---
+name: S35
+
+# Connecting the TMP36 Sensor
+
+&nbsp
+
+.center[
+<img src="img/TMP36B.gif" class="noborder" alt="TMP36 Sensor" width="700px"/>
+]
 
 ---
 exclude: true
@@ -958,6 +1086,20 @@ name: S31
 ]
 ]
 ]
+
+---
+name: S30
+
+# Challenge 3
+
+Lets add more features to your design by
+- Adding an alarm that would sound if the temperature of battery goes over 50 degrees C
+ - Hint: Use logical statements 
+- Calculating and reporting the acceleration
+ - Hint: Acceleration is the change of speed over time
+- Calculating and reporting the total distance travelled 
+ - Hint: In each revolution of the wheel, the cart would have travelled is (`\( 2 \pi r \)`) meters where (`\( r \)`) is the radius of the wheel
+
 
 ---
 exclude: true
