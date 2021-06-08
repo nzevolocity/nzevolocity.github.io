@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Evolocity Innovation Build</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { 
+        font-family: 'Droid Serif'; 
+        line-height: 1.6;
+      }
+
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: bold;
+        color: #00467F;
+      }
+
+      h1{
+        margin-top: 30px !important;
+        margin-bottom: 30px !important;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+      .TitleAuthor {
+        color:white; 
+        font-weight: normal;
+      }
+
+      .title-slide .remark-slide-number {
+        display: none;
+      }
+      .title-slide h1, h2, h3, h4 {
+        text-align: left;
+        color:white;
+        line-height: 0.7;
+        font-weight: bold;
+      }
+
+      .title-slide {
+        vertical-align: middle;
+        background-color: #00467F;
+      }
+
+      .logo-title {
+        content: "";
+        position: absolute;
+        top: 15px;
+        right:   15px;
+        height: 88px;
+        width: 267px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url(https://cdn.auckland.ac.nz/assets/central/central-services/mediaandmarketing/uoa-logos-2015/uoa-logo-2015-reverse.png);
+      }
+
+      .logo-slide {
+        content: "";
+        position: absolute;
+        top: 35px;
+        right:   15px;
+        height: 96px;
+        width: 100px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url(https://cpb-ap-se2.wpmucdn.com/blogs.auckland.ac.nz/dist/d/79/files/2015/10/uoa-v-colour2.png);
+      }
+
+      .left-column {
+        width: 65%;
+        float: left;
+        word-wrap: break-word;
+      }
+     
+      .right-column {
+        width: 30%;
+        float: right;
+        word-wrap: break-word;
+      }
+
+      .left-column2 {
+        width: 60%;
+        float: left;
+        word-wrap: break-word;
+      }
+     
+      .right-column2 {
+        width: 35%;
+        float: right;
+        word-wrap: break-word;
+      }
+
+      .left-column3 {
+        width: 45%;
+        float: left;
+        word-wrap: break-word;
+      }
+     
+      .right-column3 {
+        width: 50%;
+        float: right;
+        word-wrap: break-word;
+      }
+
+      .footer {
+        content: "";
+        position: absolute;
+        bottom: 17px;
+        color:gray;
+        font-size: 10pt;
+      }
+      
+      @page {
+        size: 1210px 681px;
+        margin: 0;
+      }
+
+      @media print {
+        .remark-slide-scaler {
+          width: 100% !important;
+          height: 100% !important;
+          transform: scale(1) !important;
+          top: 0 !important;
+          left: 0 !important;
+        }
+      }
+      
+      .zoom175 {
+        transition: transform .2s; /* Animation */
+      }
+
+      .zoom175:hover {
+        transform: scale(1.75) translateY(-20%) translateX(-20%); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+      }
+
+    </style>
+
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <style>
+    .smaller-font { font-size:14px } 
+    </style>
+
+    <!-- KaTeX and Mathjax support refer to below for syntax -->
+    <!-- https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css" integrity="sha384-dbVIfZGuN1Yq7/1Ocstc1lUEm+AT+/rCkibIcC/OmWo5f0EA48Vf8CytHzGrSwbQ" crossorigin="anonymous">
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.js" integrity="sha384-2BKqo+exmr9su6dir+qCw08N2ZKRucY4PrGQPPWU1A7FtlCGjmEGFqXCv5nyM5Ij" crossorigin="anonymous"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    
+    <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+  </head>
+  <body>
+    <textarea id="source">
+
+class: title-slide
+count: false
+.logo-title[]
+
+# Innovation Challenge: Building a Dashboard for Your EV
+### EVOLOCITY 2021
+
+.TitleAuthor[Duleepa J Thrimawithana]
+
+---
+
+layout: true
+name: template_slide
+
+.logo-slide[]
+.footer[[Duleepa J Thrimawithana](https://www.linkedin.com/in/duleepajt), Department of Electrical, Computer and Software Engineering (2021)]
+
+---
+name: SI1
+
+# The University of Auckland
+
+- Highest ranked New Zealand university and 85th in the QS World University Ranking
+- Over 5,000 staff members and 40,000 students
+- Nine faculties including Medical & Health Sciences, Engineering, Business & Economics and Science
+
+.center[<img src="img/UoAMap.png" height="300">]
+
+---
+name: SI2
+
+# Dept. of Electrical, Computer & Software Eng.
+
+.center[<img src="img/EngBuild.png" height="400">]
+
+---
+name: SI3
+
+# Dept. of Electrical, Computer & Software Eng.
+
+.left-column[
+- One of the 5 departments in the Faculty of Engineering
+- Offers 3 undergraduate degree programs
+ - Electrical & Electronics, Computer Systems and Software
+ - Project based teaching
+- 35+ full-time academic staff members and 15+ post-doctoral research fellows
+- 150+ postgraduate students and 600+ undergraduate students
+- Regular visiting research scholars and research students
+- Research groups include Power Electronics, Power Systems, Signal Processing, Robotics, Embedded Systems, Parallel Computing, Telecommunications and Control Systems
+]
+
+.right-column[
+<img src="img/UoAEng.png" width="300px">
+]
+
+---
+name: SI4
+
+# Pioneers in Wireless Power Transfer (WPT)
+
+.center[
+<iframe width="784" height="441" src="https://www.youtube-nocookie.com/embed/G1q1HZLQ528?" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+]
+---
+
+class: title-slide
+layout: false
+count: false
+.logo-title[]
+
+# Introduction to Innovation Challenge
+### What Should We Build?
+
+---
+
+layout: true
+name: template_slide
+
+.logo-slide[]
+.footer[[Duleepa J Thrimawithana](https://www.linkedin.com/in/duleepajt), Department of Electrical, Computer and Software Engineering (2021)]
+
+---
+name: S1
+
+# A Dashboard for Your EV
+
+- Provides performance feedback to the driver as well as the design team 
+  - Battery status and drive power 
+  - Speed, distance and acceleration
+  - Temperature, indicators, etc.
+
+<p> </p>
+
+.center[<img src="img/TeslaDash.jpg" class="noborder" alt="Tesla Dashboard" height="280px"/>]
+
+---
+name: S2
+
+# What Can We Measure?
+
+.left-column[
+- Battery temperature, voltage and current can be measured 
+ - Allow estimating the remaining capacity of the battery, drive power and if battery is operating safely
+ - Can use temperature, voltage and current sensors
+- Wheel speed and acceleration can be measured 
+ - Allow estimating the speed and acceleration of the vehicle
+ - Can use a tachometer or feedback from motor
+- User inputs can be measured
+ - For example pushing brake pedal, turning-on indicators, etc.
+- Location of the car can be evaluated
+ - Allow navigation, obstacle detection, speed estimation, etc.
+ - Can use GPS, LIDAR, cameras, etc.
+] 
+
+.right-column[
+.center[
+.zoom175[
+<img src="img/VISens.png" class="noborder" alt="V & I Sensor" width="200px"/>
+]
+.zoom175[
+<img src="img/MagneticSpeed.png" class="noborder" alt="V & I Sensor" width="200px"/>
+]
+.zoom175[
+<img src="img/BrakePedal.gif" class="noborder" alt="V & I Sensor" width="200px"/>
+]
+]
+]
+
+---
+name: S3
+
+# How to Convert Measured Signals to Useful Data?
+
+- A small computer can be used to collect the data from all our sensors and convert them to useful information
+ - For example, the computer can read the outputs from the voltage and current sensors and calculate important information like the remaining battery capacity or the drive power
+- The output from most sensors are in analog form but the computer can only understand digital numbers
+ - Luckily, most micro computers can convert the output from sensors to digital numbers (i.e. 1s and 0s) and process these numbers to obtain useful information
+- A circuit is provided to you that has a voltage sensor, current sensor, LCD display and an Arduino Nano micro computer
+ - We named this the "EvoSens Board" and the information coming from the sensors on this board is used by the Arduino Nano computer to work out important information about your vehicle 
+- The "EvoSens Board" also has the ability to send information wirelessly using Bluetooth 
+ - You can also connect other sensors like a tachometer or a brake sensor to the "EvoSens Board" using expansion pins provided
+
+---
+name: S4
+ 
+# An Example: EvoSens Board
+
+.center[
+<img src="img/EvoSens.png" class="noborder" alt="EvoSens" height="400px"/>
+]
+
+---
+name: S5
+
+# How Can We Display Measured Signals?
+
+.left-column[
+- A [HD44780 type LCD panel](https://www.arduino.cc/en/Tutorial/LiquidCrystalDisplay) can be used to display information to the driver 
+- LEDs can be used for indicators
+ - For example, brake lights, warning indicators, turning indicators, etc.
+- A mobile phone/tablet connected using Bluetooth can also be used as a 'fancy' dashboard
+ - Involves developing a mobile app using a tool such as [AppInventor](http://appinventor.mit.edu/explore/)
+- An IoT platform can be used to log data and view this data remotely
+ - [ThingSpeak](https://thingspeak.com) provides a free service
+ - Data can be used to improve the performance of your vehicle
+]
+
+.right-column[
+.center[
+<img src="img/EvoMeter.png" style="border:1px solid black" alt="EvoMeter" width="220px"/>
+]
+]
+
+---
+name: S6
+
+# System We Plan to Build
+
+<br> 
+
+.center[
+<img src="img/SystemPicture2.png" class="noborder" alt="System Picture" height="300px"/>
+]
+
+---
+name: S7
+
+# System Diagram of the Build
+
+- When engineering a complex system, we divide it into more manageable smaller problems
+  - Each smaller problem to solve is shown as a block/box
+  - Connected boxes show the complete system we plan to build
+
+.center[
+<img src="img/SystemDiagram.png" class="noborder" alt="System Diagram" height="300px"/>
+]
+
+---
+
+class: title-slide
+layout: false
+count: false
+.logo-title[]
+
+# Building an Electronic Circuit
+### Learning to Use a Breadboard
+
+---
+
+layout: true
+name: template_slide
+
+.logo-slide[]
+.footer[[Duleepa J Thrimawithana](https://www.linkedin.com/in/duleepajt), Department of Electrical, Computer and Software Engineering (2021)]
+
+---
+name: S8
+
+# How Can We Build a Circuit Quickly?
+
+.left-column[
+- We need a way to connect electronic components together to build a circuit
+ - This is typically done by soldering the components on to a printed circuit board (PCB) 
+- If you had to build a simple circuit quickly how will you do this?
+ - Getting a PCB made takes time 
+- A breadboard can be used to help build a circuit quickly
+ - Component legs are inserted into holes in order to make connections with other components
+ - Holes are electrically connected with other holes as indicated in the diagram
+- Alternatively you can use a Veroboard
+]
+
+.right-column[
+.center[
+.zoom175[
+<img src="img/PCB.png" class="noborder" alt="PCB" width="200px"/>
+]
+.zoom175[
+<img src="img/soldering.gif" class="noborder" alt="Soldering" width="200px"/>
+]
+.zoom175[
+<img src="img/Breadboard.png" class="noborder" alt="Breadboard" width="200px"/>
+]
+]
+]
+
+---
+name: S9
+
+# Building an LED Circuit with On/Off Switch
+
+- Lets assume we want to build a circuit that lets us turn-on and turn-off an LED with a switch
+ - When the switch is closed by pressing the knob, 5 V from the battery is applied lighting the LED
+- A push-button, an LED and a resistor can be assembled on a breadboard to create this circuit
+ - The resistor limits the current through the LED and therefore controls its brightness 
+- Lets assemble these components on a breadboard as in the picture and power it using a 9V battery
+ - We can also use a circuit diagram to show how components should be connected (on the right)
+- How can we make the LED brighter? Is this how a light switch at home works?
+
+.center[
+<img src="img/LEDDemo.jpg" class="noborder" alt="LED Demo" height="200px"/>
+]
+
+---
+name: S10
+
+# Building a Voltage Sensor Circuit
+
+.left-column[
+- Battery voltage is too high to measured by an Arduino computer
+ - The voltage sensor steps-down the battery voltage to a value that can be measured by the Arduino computer
+- A voltage sensor can be made using two resistors that form a voltage divider
+ - Voltage at the mid point of the divider (sensor) is 
+\\[\text {Measurement} = \text {Battery Voltage} \times \frac {R\_{VSENS2}} {R\_{VSENS1} + R\_{VSENS2}} \\]
+- Lets build a voltage sensor to measure the voltage of a 9V battery
+ - Use `\( 10k\Omega \)` and `\( 130k\Omega \)` resistors to step-down the voltage
+ - With a multimeter confirm you get 0.64V at mid point
+ - Lets now try using 24V instead of the 9V battery
+]
+
+.right-column[
+.center[
+<img src="img/VoltageDiv2.png" class="noborder" alt="Voltage Divide" width="300px"/>
+]
+]
+
+---
+
+class: title-slide
+layout: false
+count: false
+.logo-title[]
+
+# Programing Fundamentals
+### Learning to Use Arduino IDE
+
+---
+
+layout: true
+name: template_slide
+
+.logo-slide[]
+.footer[[Duleepa J Thrimawithana](https://www.linkedin.com/in/duleepajt), Department of Electrical, Computer and Software Engineering (2021)]
+
+---
+name: S11
+
+# What is a Computer?
+
+.right-column2[
+- A computer is an electronic device that can *receive, process, and store data*
+- A computer has a processor which can manipulate the data by adding, dividing, subtracting, etc.
+- The inputs are recieved from for example, keyboard, mice, mic, etc.
+- The data is stored in memory 
+]
+
+.left-column2[
+.center[
+<img src="img/computer_internals.PNG" class="noborder" alt="Diagram of the parts of a computer" width="550px"/>
+]
+]
+
+---
+name: S12
+
+# Computers
+
+.center[
+<img src="img/Computers.png" class="noborder" alt="Computer Types" width="800px"/>
+]
+
+---
+name: S13
+
+# Which Computer Should We Use?
+
+.right-column2[
+- A microcontroller is the most suitable computer for your system
+ - An _embedded_ computer
+ - Low power consumption
+ - Sufficient processing power
+ - Useful in-built peripherals including an analog to digital conversion (ADC) circuit
+ - Cheap and easy to use
+- An Arduino Nano is suitable for our project
+ - It is a microcontroller (micro-computer)
+]
+
+.left-column2[
+.center[
+<img src="img/MircroArch.png" class="noborder" alt="Micorcontroller" width="600px"/>
+]
+]
+
+---
+name: S14
+
+# How to Make Our Microcontroller Think?
+
+- Use *variables* and *conditionals* to implement *algorithms*
+ - A variable is used to store data and has a type like *int* and *char* 
+ - Conditionals are used to make decisions using statements like *if* and *else* together with logical operators that are used to compare variables
+- Loops are used to repeat a set of instructions
+ - *for* and *while* loops are commonly used
+- Instructions are written in a low level programming language such as C
+ - Program is organized into *functions* for our sanity
+ - Use comments to explain what each part of the program does
+ - Compilers convert the program to machine code that the microcontroller can understand
+- Machine code is loaded to the microcontroller
+ - We call this "programming the microcontroller"
+ - Using programming hardware 
+
+---
+name: S15
+
+# Arduino Nano and Arduino IDE
+
+.left-column[
+- Arduino Nano is the recommended micro-computer for this project
+- Arduino Integrated Development Environment (IDE) provides a simplified interface to write your software program 
+ - An Arduino program is called a *sketch*
+- There are many useful Arduino libraries to simplify programing
+ - Easy use of peripherals and shields
+ - Many examples and abundant support forums
+ - Your software can be written in a C language
+- The Arduino Nano micro-computer board we will use has
+ - An 8-bit microcontroller (ATMega328P) made by Atmel
+ - Many digital and analogue pins + a USB programmer
+ - Cheap (~$12)
+]
+
+.right-column[
+.center[
+<br>
+
+<img src="img/Nano.jpg" style="border:none" alt="Nano Pin Map" width="350px"/>
+]
+]
+
+---
+name: S16
+
+# Using Arduino IDE to Program Arduino Nano
+
+.right-column3[
+- Connect the Arduino Nano board to the PC using USB cable
+- Tell Arduino about the board you use
+ - Go to Tools > Board and select "Arduino Nano"
+ - Go to Tools > Processor and select "ATMega328P (Old Bootloader)"
+ - Go to Tools > Port and select the correct one
+- You can use an example program provided in Arduino IDE for testing 
+ - Lets open the *Blink* example, from File > Examples > Basics > Blink
+ - Compile, and upload (program) to verify it works
+]
+.left-column3[
+.center[
+<img src="img/BlinkingLEDEg.png" style="border:none" alt="Blinking Example" height="420px"/>
+]
+]
+
+---
+
+class: title-slide
+layout: false
+count: false
+.logo-title[]
+
+# Learning to Programing
+### Writing Simple Programs for an Ardunio
+
+---
+
+layout: true
+name: template_slide
+
+.logo-slide[]
+.footer[[Duleepa J Thrimawithana](https://www.linkedin.com/in/duleepajt), Department of Electrical, Computer and Software Engineering (2021)]
+
+---
+name: S17
+
+# Turning an LED On and Off with Arduino (P-I)
+
+.left-column[
+- We learnt to use a push-button to turn a LED on and off
+ - Pushing the button supplied battery voltage through a resistor to an LED turning it on
+ - Releasing the button removed the voltage turning the LED off
+- Can we use an Arduino microcontroller to automate this process?
+ - When a digital pin is set to produce a logic high output it behaves like a turned-on switch and supplies 5V
+ - When a digital pin is set to produce a logic low output it behaves like turned-off switch and supplies 0V
+- Thus a digital pin can replace the push-button
+ - Modify your LED circuit by connecting pin 6 of the Arduino to where the positive (red) wire of the battery was and ground of the Arduino to where the negative (black) wire of battery was 
+]
+
+.right-column[
+.center[
+<img src="img/ledblink.gif" class="noborder" alt="LED Blink Animation" width="220px"/>
+<img src="img/LEDBlinkW.png" class="noborder" alt="LED Wiring" width="220px"/>
+]
+]
+
+---
+name: S18
+
+# Turning an LED On and Off with Arduino (P-II)
+
+.left-column2[
+- Click on File > New to create a new program  
+- In your program first 'setup' pin 6 as an output pin 
+ - Pin 6 can now produce 5V (logic high) or 0V (logic low) similar to switch turning on or off
+- We could also 'setup' a digital pin to read digital inputs
+ - We will look at an example later
+- To blink LED, flip the digital pin between 5V and 0V every 1s
+- 5V is produced by writing a logic high to the digital pin
+ - Keep 5V on for 1s by 'delaying' 1s
+- 0V is produced by writing a logic low to the digital pin
+ - Keep 0V on for 1s by 'delaying' 1s
+- Tell program to 'loop' indefinitely through this program
+ - Test this in your circuit
+]
+
+.right-column2[
+.center[
+<img src="img/BlinkingExample.png" class="noborder" alt="LED Program" width="400px"/>
+]
+]
+
+
+---
+name: S19
+
+# Communicating with a PC (P-I)
+
+.left-column[
+- Microcontrollers communicate with other devices through many methods
+ - Examples include USB, HDMI, Serial, CAN, etc.
+- *Serial* provides a simple way to send/receive messages
+ - Send/receive a stream of logic-highs and lows over a wire 
+- Most devices, communicates with the microcontroller using serial
+ - Examples include PC/laptop, Bluetooth modules, screens, etc.
+- Lets get the Arduino Nano to display your name on the PC screen
+ - In your program, first 'setup' *Serial* communication at a speed of 9600 bps
+ - In the loop, using *Print* function send your name to the PC every second
+- Use Arduino *Serial Monitor* to view message on the PC
+]
+
+.right-column[
+.center[
+<img src="img/Serial.png" class="noborder" alt="Serial Diagram" width="220px"/>
+]
+]
+
+---
+name: S20
+
+# Communicating with a PC (P-II)
+
+.center[
+<img src="img/SerialEg.png" class="noborder" alt="Serial Diagram" width="900px"/>
+]
+
+---
+
+class: title-slide
+layout: false
+count: false
+.logo-title[]
+
+# Starting Work on the Dashboard 
+### Measuring Battery Voltage & Current
+
+---
+
+layout: true
+name: template_slide
+
+.logo-slide[]
+.footer[[Duleepa J Thrimawithana](https://www.linkedin.com/in/duleepajt), Department of Electrical, Computer and Software Engineering (2021)]
+
+---
+name: S22
+
+# Digital and Analog Signals
+
+.left-column[
+- Binary signals that correspond to a logic high (true) or logic low (false) are called digital signals
+ - A logic high is (usually) 5V and a logic low is 0V
+ - Digital signals are read or produced using a digital pin on a microcontroller
+ - Need to setup the pin as an 'input' or an 'output' pin
+- Continuous signals that change over time are called analog signals
+ - A microcontroller reads the analogue voltage signals using specific analog pins, which are connected to an Analogue to Digital Converter (ADC)
+- An ADC convert an analog voltage to a digital (integer) number
+ - Arduino Nano has a built in ADC
+ - Higher ADC resolution improves accuracy
+]
+
+.right-column[
+.center[
+<img src="img/ADC.png" class="noborder" alt="ADC" width="200px"/>
+]
+]
+
+---
+name: S23
+
+# How Does an ADC Work?
+
+.left-column[
+- The analogue pins A0 to A7 of the Arduino Nano are connected to Arduino Nano's Analogue to Digital converter (ADC) unit
+ - For example, the analogue voltage at pin A0 can be read by the Arduino using the command analogRead(A0)
+ - The value this command gives you is an integer number since computers love integers  
+ - We need to use mathematics to find out actual voltage
+- ADC on the Arduino Nano converts a voltage between 0V & 5V to an integer between 0 & 1023
+ - For example, 2.5V applied to A0 will be read by Arduino as 512
+- How can we use mathematics to work out the actual voltage?
+ - What we get from analogRead(A0) need to divided by 1023 and multiplied by 5
+]
+
+.right-column[
+.center[
+<img src="img/ADCExample.png" class="noborder" alt="ADC Working" width="300px"/>
+]
+]
+
+---
+name: S24
+
+# Variables and Logic Statements 
+
+.left-column2[
+- Variables act as memory to store values, similar to math
+- There are different variable types 
+ - Integer, character, float, string, unsigned int, etc.
+- Crucial to define the correct type of variable
+ - Variables 'A' and 'B' that hold an integer number can be defined as *int A* and *int B*
+ - 'A' can be assigned a value as `\( \text {A=2*B or A=10} \)`
+- *if* and *else* statements can be used to make decisions
+- Logic operators compare variables
+ - Equal (A==B), not equal (A!=B)
+ - Greater than `\( \text {(A > B)} \)`, Less than  `\( \text {(A < B)} \)`
+ - AND (A&&B), OR (A||B)
+]
+
+.right-column2[
+.center[
+<img src="img/LogicExample.png" class="noborder" alt="Logic Example" width="450px"/>
+]
+]
+
+---
+name: S25
+
+# Measuring the Battery Voltage (P-I)
+
+- Lets use the "EvoSens Board" to measure the voltage of you vehicle battery
+ - In your real design this will be the 24V or the 48V vehicle battery
+- For now connect the 9V battery across the terminals labelled "Battery" (make sure the polarity is correct)
+- The voltage sensor on the "EvoSens Board" steps-down the battery voltage by 10/140
+ - This is because `\( R_{sens1} = 130k\Omega \)` and `\( R_{sens2} = 10k\Omega \)`
+- In your program, first 'setup' *Serial* communication at 9600 bps so we can display battery voltage on PC
+- Output of the voltage sensor is connected to A0 pin
+ - Read the voltage at A0 using *analogRead(A0)*
+- *AnalogRead* converts a 0V to 5V signal at A0 to a number between 0 and 1023
+ - To get the actual voltage we have to multiply the result by 5 and divide by 1023
+ - We also have to multiply this number by 14 to get the actual battery voltage by reversing the step-down introduced by the voltage sensor
+- Read and display the battery voltage on PC every 1s
+
+---
+name: S26
+
+# Measuring the Battery Voltage (P-II)
+
+.center[
+<img src="img/EvoSensV.png" class="noborder" alt="Voltage Measurement" width="950px"/>
+]
+
+
+---
+name: S26
+
+# Measuring the Battery Current (P-I)
+
+.left-column[
+- Battery current needs to be converted to a voltage to be measured by an Arduino 
+ - A current sensor integrated circuit (IC) can be used for this
+-	In "EvoSens Board", we use an IC called “ACS730” to measures the current flowing from the battery to the motor controller 
+ - The output of the ACS730 IC is connected to pin A1
+- The output of ACS730 is a voltage proportional to current through
+\\[\text {Measurement} = \text {Battery Current} \times 0.04 + 2.5V \\]	
+- For example, if the current flowing from battery is 20A then the voltage produced by the ACS730 will be 3.3V (i.e. 2.5 + 0.04 x 20)
+- Lets improve our program to measure both the battery current and voltage and display on PC screen
+
+]
+
+.right-column[
+.center[
+.zoom175[
+<img src="img/CurrentSens.png" class="noborder" alt="Voltage Divide" width="320px"/>
+]
+]
+]
+
+---
+name: S30
+
+# Measuring the Battery Current (P-II)
+
+.center[
+<img src="img/EvoSensI.png" class="noborder" alt="V&I Measurement" width="950px"/>
+]
+
+---
+
+class: title-slide
+layout: false
+count: false
+.logo-title[]
+
+# Bluetooth Communication  
+### Sending Information to a Phone
+
+---
+
+layout: true
+name: template_slide
+
+.logo-slide[]
+.footer[[Duleepa J Thrimawithana](https://www.linkedin.com/in/duleepajt), Department of Electrical, Computer and Software Engineering (2021)]
+
+---
+
+name: S27
+
+# Bluetooth Communication with Phone (P-I)
+
+-	Bluetooth modules can communicate with the Arduino Nano using serial
+-	Since we already use the default serial to communicate with PC we have to use a software serial 
+-	Fortunately, we are going to use an existing software called AltSoftSerial to help us
+-	Go to Tools > Manage Libraries, find AltSoftSerial and install it so we can use it in our project
+-	We can now setup AltSoftSerial communication at 9600 bps to communicate with the Bluetooth module  
+ -	Connect the Bluetooth module to header pins labeled “P1” 
+- Lets have a counter that counts up every second upto 10 and send this counter value to the phone
+ - The phone will receive the counter value every second
+ - Display the counter value also on the PC so we can *debug* our code 
+-	On your phone, download a *BluetoothLE* app to view the message sent by the Arduino 
+ - Once you pair the Bluetooth module with the phone via the BluetoothLE app, the blinking red light will stay on indicating successful pairing
+
+---
+name: S28
+
+# Bluetooth Communication with Phone (P-II)
+
+.center[
+<img src="img/EvoSensBLE.png" class="noborder" alt="BLE Coms" width="920px"/>
+]
+
+---
+
+class: title-slide
+layout: false
+count: false
+.logo-title[]
+
+# Temperature Sensors and Tachometers   
+### Measuring Temperature and Speed
+
+---
+
+layout: true
+name: template_slide
+
+.logo-slide[]
+.footer[[Duleepa J Thrimawithana](https://www.linkedin.com/in/duleepajt), Department of Electrical, Computer and Software Engineering (2021)]
+
+
+---
+name: S35
+
+# Measuring Battery Temperature 
+
+.left-column[
+- There are many types of temperature sensors
+- TMP36 is one of the easiest to use
+- It needs a 5V supply and a ground connection
+- The voltage at the center pin will change by 0.01V per every degree starting from 0.5V at 0 degrees C
+ - For example if the temperature is 25 degree C the TMP36 sensor will show 0.75V (i.e. 0.5 + 0.25V)
+- The black plastic case of the TMP36 sensor should be touching the hot surface to be measured 
+- We can connect the TMP36 (or any other sensor) to the "EvoSens Board" using the header P2
+ - Pins 2 to 3 of this header connects to A6 to A3 of Arduino 
+
+]
+
+.right-column[
+.center[
+<img src="img/tmp36.png" class="noborder" alt="TMP36 Sensor" width="300px"/>
+]
+]
+
+
+---
+name: S35
+
+# Connecting the TMP36 Sensor
+
+- Lets connect the pins 1, 2 and 6 of P2 on the "EvoSens Board" to pins 1, 2 and 3 of the TMP36
+ - The voltage at the center pin of TMP36 can be read using *analogRead(A6)* function
+
+.center[
+<img src="img/TMP36B.gif" class="noborder" alt="TMP36 Sensor" width="700px"/>
+]
+
+---
+name: S31
+
+# Measuring Vehicle Speed & Acceleration
+
+.left-column[
+- Typically we use a tachometer to measure how fast a wheel spins 
+ - Rotational speed (`\( \omega_{wheel} \)`) and acceleration (`\( \alpha_{wheel} \)`) of the wheel is then converted linear speed (`\( v_{cart} \)`) and acceleration (`\( a_{cart} \)`) since we know the radius (`\( r \)`) of the wheel
+\\[v\_{cart} \approx  \omega\_{wheel} \times r \quad  \text {&} \quad a\_{cart} \approx \alpha\_{wheel} \times r \\]
+- Alternatively a GPS can be used to measure the speed and acceleration 
+ - GPS modules that interface with [Arduino are available](https://create.arduino.cc/projecthub/ruchir1674/how-to-interface-gps-module-neo-6m-with-arduino-8f90ad) or a phone with an appropriate app can be used 
+- Motor controllers can predict the speed using for example the sensors in the motor 
+ - Depends on type of motor and controller you use
+]
+
+.right-column[
+<br>
+<br>
+<img src="img/MagneticSpeed.png" class="noborder" alt="V & I Sensor" width="350px"/>
+]
+
+---
+name: S32
+
+# Tachometers
+
+.left-column[
+- Commonly tachometers either use magnetism of light to measure the rotational speed of a wheel 
+- A tachometers that relies on light to measure the speed of a wheel use a device called a photo interrupter 
+- A photo interrupter consist of 
+ - Light emitting diode (LED) to generate a light source (a light beam)
+ - A light detector like a photo diode or photo transistor 
+- Photo interrupters are very cheap 
+- A more advanced version of a tachometers are also called shaft/rotary encoder
+ - They can also predict the precise location of the wheel 
+]
+
+.right-column[
+.center[
+<img src="img/photoint2.jpg" class="noborder" alt="Sensor" width="130px"/>
+.zoom175[
+<img src="img/PhotoInt.jpg" class="noborder" alt="Photo Sensor" width="320px"/>
+]
+]
+]
+
+---
+name: S33
+
+# How to Use a Photo Interrupter (PI)
+
+.center[
+<img src="img/SpeedSensor.png" class="noborder" alt="Speed Sensor" width="400px"/> &nbsp &nbsp &nbsp &nbsp &nbsp
+<img src="img/PhotoInt.jpg" class="noborder" alt="Speed Sensor" width="400px"/>
+]
+
+- LED needs to be powered (e.g. using a 5V supply and a current limiting resistor)
+- Light detector may also need a power supply to function (typical a 5V supply) together with a measurement resistor 
+- When light from the LED reaches the detector through the slots in the disk attached to wheel the photo interrupter produces a signal 
+
+---
+name: S34
+
+# How to Use a Photo Interrupter (PII)
+
+
+.center[
+<img src="img/SpeedSensor.png" class="noborder" alt="Speed Sensor" width="380px"/> &nbsp &nbsp &nbsp &nbsp &nbsp
+<img src="img/PhotoInt.jpg" class="noborder" alt="Speed Sensor" width="380px"/>
+]
+
+- When slots are out of alignment, no light reaches the detector 
+- Photo interrupter outputs a stream of high and low pulses that can be counted to determine the speed
+- Number of pulses depends on the number of slots (`\( N_{slots} \)`) in the disk
+- The rotational speed is then simply 
+\\[ \omega\_{wheel} = 2\pi / (\text{Time Period of a Pulse} \times N_{slots}) \\]
+
+---
+
+class: title-slide
+layout: false
+count: false
+.logo-title[]
+
+# Acknowledgements
+#### Special thanks to Wai Yeung, Ryan Kurte, Andrew Chen & Hamish O'Neill from the 
+#### Electrical, Computer & Software Engineering department at The University of Auckland 
+#### for their support in preparing this material.
+
+
+---
+
+class: title-slide
+layout: false
+count: false
+.logo-title[]
+
+# Questions?
+### Thank you
+
+
+    </textarea>
+
+    <!-- 
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    -->    
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript">
+    </script>
+
+
+    <script src="remark.min.js" type="text/javascript">
+    </script>
+
+    <script type="text/javascript">
+
+      var options = {};
+
+      var renderMath = function() {
+        renderMathInElement(document.body);
+        // or if you want to use $...$ for math,
+        renderMathInElement(document.body, {delimiters: [ // mind the order of delimiters(!?)
+        {left: "$$", right: "$$", display: true},
+        {left: "$", right: "$", display: false},
+        {left: "\\[", right: "\\]", display: true},
+        {left: "\\(", right: "\\)", display: false},
+        ]});
+      }
+
+      var slideshow = remark.create({
+        ratio: '16:9',
+        slideNumberFormat: '%current%',
+        countIncrementalSlides: false,
+        renderMath,
+      });
+
+      MathJax.Hub.Config({
+          tex2jax: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+          processEscapes: true
+          }
+      });
+
+      MathJax.Hub.Queue(function() {
+          $(MathJax.Hub.getAllJax()).map(function(index, elem) {
+              return(elem.SourceElement());
+          }).parent().addClass('has-jax');
+      });
+
+      MathJax.Hub.Configured();
+      
+    </script>
+  </body>
+</html>
