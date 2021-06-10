@@ -1,7 +1,7 @@
 /* Using EvoSens Board to send data to phone via Bluetooth
  * By Duleepa J Thrimawithana
- * Revision 1.0
- * 21 June 2019
+ * Revision 1.1
+ * 06 June 2021
  */
 
 #include <AltSoftSerial.h>

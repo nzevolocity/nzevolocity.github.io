@@ -1,7 +1,7 @@
 /* Using EvoSens Board to measure battery voltage & current
  * By Duleepa J Thrimawithana
  * Revision 1.0
- * 21 June 2019 
+ * 07 June 2021 
  */
  
 void setup() {
@@ -14,7 +14,7 @@ void setup() {
 void loop() {
   
   // Read voltage on A0 and convert to actual voltage
-  float Voltage = (7.8*5)*analogRead(A0)/1024;
+  float Voltage = (14.0*5)*analogRead(A0)/1024;
 
   // Read the current sensor output at 0 A as it may 
   // be slightly differrent to 2.5 V 
