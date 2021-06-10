@@ -839,6 +839,52 @@ layout: false
 count: false
 .logo-title[]
 
+# Using the Liquid Crystal Display (LCD)  
+### Displaying Messages
+
+---
+
+layout: true
+name: template_slide
+
+.logo-slide[]
+.footer[[Duleepa J Thrimawithana](https://www.linkedin.com/in/duleepajt), Department of Electrical, Computer and Software Engineering (2021)]
+
+---
+
+name: S27
+
+# Liquid Crystal Display (LCD) (P-I)
+
+-	There are many display types we can use to show information about the vehicle
+ - A monochrome LCD display is the most common and simple to use
+ - We can use more advanced color displays as well (check an example [here](https://create.arduino.cc/projecthub/electropeak/ultimate-beginner-s-guide-to-run-tft-lcd-displays-by-arduino-081006))
+-	EvoSens board is designed to accept an HD44780 compatible LCD display 
+ - There are many sizes but we are using one with 2 lines, where each line can display 16 characters
+-	We are going to use the [LiquidCrystal](https://www.arduino.cc/en/Reference/LiquidCrystal) library provided by Arduino to make things simple
+ - You can visit the [home page](https://www.arduino.cc/en/Reference/LiquidCrystal) for the library to check-out many examples
+- In our program, first we need to tell which pins of the Arduino are connected to the LCD display using *LiquidCrystal lcd(rs, enable, d4, d5, d6, d7)* function
+ - Set this to *LiquidCrystal lcd(4, 5, 6, 7, 11, 12)* to reflect the pins we are using
+- Lets improve the program we wrote and display the voltage on the LCD
+ - We can use *lcd.setCursor(line,character)* to position our messages
+ - We can use *lcd.print(message)* to display a message on the LCD screen (e.g. *lcd.print("Hello")*)
+
+---
+name: S28
+
+# Liquid Crystal Display (LCD) (P-II)
+
+.center[
+<img src="img/EvoSensDisplay.png" class="noborder" alt="BLE Coms" width="820px"/>
+]
+
+---
+
+class: title-slide
+layout: false
+count: false
+.logo-title[]
+
 # Bluetooth Communication  
 ### Sending Information to a Phone
 
